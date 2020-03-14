@@ -1,24 +1,27 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import Jumbotron from './components/statics/jumbotron';
+import MovieResults from './components/MovieResults';
+import {BrowserRouter, Switch, Link, Route} from 'react-router-dom'
+import FavoriteMovieList from './components/FavoriteMovieList';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="container">
+      <div className="row text-center">
+      <Jumbotron />
+      </div>
+      <div className="row">
+        <BrowserRouter>
+          <Switch>
+            <Route path="/" component={MovieResults} exact={true} />
+            <Route path="/favorite" component={FavoriteMovieList}  />
+          </Switch>
+          <Link to="/favorite">Favorite</Link>
+        </BrowserRouter>
+      </div>
+      {/* <div className="row">
+        <MovieResults />
+      </div> */}
     </div>
   );
 }
